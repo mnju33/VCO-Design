@@ -164,16 +164,6 @@ The remaining verification steps are:
 4. Compare P/M symmetry and position-dependent resistance.
 5. Re-extract all 597 banks after fixing the extraction conditions, then update the design calculator.
 
-
-- [W07 — LC-VCO architecture and inductor structure selection](https://docs.google.com/spreadsheets/d/10oYxRaVc69ShrGxXwJi_bWyr5pR38Fh5EPvvSAdEf2o/edit#gid=368872168).
-- [W08 — inductor metal-stack EMX comparison and preliminary sizing](https://docs.google.com/spreadsheets/d/10oYxRaVc69ShrGxXwJi_bWyr5pR38Fh5EPvvSAdEf2o/edit#gid=452662224).
-- [W09 — varactor sizing and LC tank calculations](https://docs.google.com/spreadsheets/d/10oYxRaVc69ShrGxXwJi_bWyr5pR38Fh5EPvvSAdEf2o/edit#gid=2063818175).
-- [W10 — varactor layout/LVS/PEX and MIM characterization](https://docs.google.com/spreadsheets/d/10oYxRaVc69ShrGxXwJi_bWyr5pR38Fh5EPvvSAdEf2o/edit#gid=1811760778).
-
-[VCO weekly research notes — W11](https://docs.google.com/spreadsheets/d/10oYxRaVc69ShrGxXwJi_bWyr5pR38Fh5EPvvSAdEf2o/edit#gid=340642055): capacitor bank design, layout reconstruction, and verification status.
-
-Original PDK files and circuit databases are not included.
-
 ## Related Project
 
 [QLL Design](https://github.com/mnju33/QLL-Design) — injection-locked quadrature clock circuit design and simulation.
