@@ -164,7 +164,6 @@ The remaining verification steps are:
 4. Compare P/M symmetry and position-dependent resistance.
 5. Re-extract all 597 banks after fixing the extraction conditions, then update the design calculator.
 
-## Source Material
 
 - [W07 — LC-VCO architecture and inductor structure selection](https://docs.google.com/spreadsheets/d/10oYxRaVc69ShrGxXwJi_bWyr5pR38Fh5EPvvSAdEf2o/edit#gid=368872168).
 - [W08 — inductor metal-stack EMX comparison and preliminary sizing](https://docs.google.com/spreadsheets/d/10oYxRaVc69ShrGxXwJi_bWyr5pR38Fh5EPvvSAdEf2o/edit#gid=452662224).
