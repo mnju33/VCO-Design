@@ -4,7 +4,11 @@ Varactor, inductor, and differential MIM capacitor bank design for a broadband, 
 
 ## Scope
 
-This repository covers the VCO tank design: MOS varactor design and layout, inductor design, and differential MIM capacitor bank implementation. The W09–W11 notes support the calculations, simulations, layout checks, and extraction status described below. Inductor implementation is identified by the designer; its geometry and extracted performance are pending addition from the corresponding source material. The results do not establish final silicon performance of the complete VCO.
+This repository covers the VCO tank design: MOS varactor design and layout, inductor design, and differential MIM capacitor bank implementation. The W07–W11 notes document the complementary cross-coupled LC-VCO architecture, inductor EMX comparisons, tank calculations, varactor simulations, and capacitor bank layout checks described below. The results do not establish final silicon performance of the complete VCO.
+
+## VCO Architecture
+
+W07 records the circuit configuration of a complementary cross-coupled LC-VCO targeting 8–10 GHz. Subsequent work sized the resonant tank, evaluated startup transconductance and tuning gain, and developed the passive components.
 
 ## Tank Sizing and Tuning Budget
 
@@ -66,7 +70,44 @@ Nineteen via-spacing issues were corrected. The unit-cell check with FULL_CHIP d
 
 ## Inductor Design
 
-The designer also implemented an inductor as part of the VCO project. W09 uses 200 pH as the tank-sizing input. The readable W09/W10 entries do not specify the implemented geometry, metal stack, extracted inductance/Q, or self-resonant frequency; those details require the corresponding layout or EMX source before quantitative results can be documented.
+### Structure Selection
+
+W07 selected a differential symmetric octagonal inductor with a center tap as the baseline design direction. Starting guidelines included an inner diameter of at least five times the conductor width and spacing around three times the minimum allowed spacing. These were initial design guidelines, not documented final geometry dimensions.
+
+The design review considered conductor width, outer/inner diameter, turn count, substrate coupling, self-resonance, and the trade-off between inductance, loss, and tuning range. Ground shielding, twisted four-port structures, and tail-inductor filtering were literature-based options rather than implemented results in these notes.
+
+### Metal-Stack EMX Comparison
+
+W08 compared seven metal configurations using the same inductor geometry over a recorded 0–100 GHz sweep:
+
+| Variant | Metal configuration |
+| --- | --- |
+| 0 | M9 |
+| 1 | M9 + M8 |
+| 2 | M9 + M8 + M7 |
+| 3 | M9 + M7 |
+| 4 | M9 + M8 + M7 + M6 |
+| 5 | M9 + M6 |
+| 6 | M9 + M6 with fewer vias |
+
+The extracted inductance, Q, and series-resistance curves nearly overlapped across all seven variants.
+
+| Metric | Approximate W08 EMX result |
+| --- | --- |
+| Low-frequency inductance | 170–180 pH |
+| Q near 10 GHz | 8–9 |
+| Peak Q | Approximately 19 at 45–50 GHz |
+| Configuration-dependent differences | Small differences mainly above 60 GHz |
+
+Adding lower metal layers or reducing the via count produced little change in the target 8–10 GHz band for this geometry. The notes proposed thick top metal, via resistance, and added substrate capacitance as possible explanations; these were hypotheses requiring further checks.
+
+### Design Implications and Remaining Work
+
+The W08 ideal calculator assumed Q = 30 while comparing L = 100/150 pH, 3–6-bit thermometer-coded banks, and unit/varactor capacitance steps of 30/40/50 fF. Those 72 sizing cases were preliminary calculations, separate from the EMX results. The selected 150 pH / 5-bit / 40 fF case had an adjacent-code overlap ratio of 1, leaving no overlap margin.
+
+Because the extracted Q near 10 GHz was approximately 8–9, the ideal calculator's startup-current and power estimates require recalculation using extracted loss. W09 subsequently used L = 200 pH for a revised tuning budget; that value is a calculator input, not the measured or extracted inductance of the W08 geometry.
+
+The next recorded steps were to vary turn count, conductor width, and inner diameter; check PDK metal thickness and sheet resistance; and incorporate extracted L and Q into tank sizing. Final geometry dimensions and self-resonant frequency are not specified in the readable entries.
 
 ## MIM Capacitor Characterization
 
@@ -125,6 +166,8 @@ The remaining verification steps are:
 
 ## Source Material
 
+- [W07 — LC-VCO architecture and inductor structure selection](https://docs.google.com/spreadsheets/d/10oYxRaVc69ShrGxXwJi_bWyr5pR38Fh5EPvvSAdEf2o/edit#gid=368872168).
+- [W08 — inductor metal-stack EMX comparison and preliminary sizing](https://docs.google.com/spreadsheets/d/10oYxRaVc69ShrGxXwJi_bWyr5pR38Fh5EPvvSAdEf2o/edit#gid=452662224).
 - [W09 — varactor sizing and LC tank calculations](https://docs.google.com/spreadsheets/d/10oYxRaVc69ShrGxXwJi_bWyr5pR38Fh5EPvvSAdEf2o/edit#gid=2063818175).
 - [W10 — varactor layout/LVS/PEX and MIM characterization](https://docs.google.com/spreadsheets/d/10oYxRaVc69ShrGxXwJi_bWyr5pR38Fh5EPvvSAdEf2o/edit#gid=1811760778).
 
